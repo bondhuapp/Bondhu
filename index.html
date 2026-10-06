@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#070914" />
+  <meta name="description" content="Bondhu — Connect. Share. Belong." />
+  <title>Bondhu — Connect. Share. Belong.</title>
+  <link rel="icon" href="./bondhu-logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div><div class="grain"></div>
+  <div id="toast" class="toast"></div>
+
+  <section id="authView" class="auth-shell">
+    <div class="auth-visual">
+      <div class="brand lockup"><img src="./bondhu-logo.png" alt="Bondhu logo"><div><strong>Bondhu</strong><span>Connect. Share. Belong.</span></div></div>
+      <div class="hero-copy"><span class="eyebrow">YOUR PEOPLE. YOUR SPACE.</span><h1>Social feels better<br><em>with Bondhu.</em></h1><p>A clean, modern place to share moments, discover people and stay close to the ones who matter.</p></div>
+      <div class="floating-card"><span class="pulse-dot"></span><div><b>Made for real connections</b><small>Private by design • Community first</small></div></div>
+    </div>
+    <div class="auth-card glass">
+      <div class="mobile-brand"><img src="./bondhu-logo.png" alt="Bondhu"></div>
+      <div class="auth-tabs"><button class="tab active" data-auth="login">Log in</button><button class="tab" data-auth="signup">Create account</button></div>
+      <div id="loginForm" class="auth-form">
+        <h2>Welcome back</h2><p class="muted">Log in to continue to Bondhu.</p>
+        <label>Email or username<input id="loginIdentity" autocomplete="username" placeholder="you@example.com" /></label>
+        <label>Password<div class="password-wrap"><input id="loginPassword" type="password" autocomplete="current-password" placeholder="••••••••" /><button class="eye" data-toggle="loginPassword">◉</button></div></label>
+        <div class="form-row"><label class="check"><input id="remember" type="checkbox" checked> Remember me</label><button class="link-btn" id="forgotBtn">Forgot password?</button></div>
+        <button class="primary" id="loginBtn">Log in <span>→</span></button>
+      </div>
+      <div id="signupForm" class="auth-form hidden">
+        <h2>Create your Bondhu</h2><p class="muted">A few details and you're in.</p>
+        <label>Username<input id="signupUsername" autocomplete="username" placeholder="yourname" /></label>
+        <label>Email<input id="signupEmail" type="email" autocomplete="email" placeholder="you@example.com" /></label>
+        <label>Password<div class="password-wrap"><input id="signupPassword" type="password" autocomplete="new-password" placeholder="At least 8 characters" /><button class="eye" data-toggle="signupPassword">◉</button></div></label>
+        <button class="primary" id="signupBtn">Create account <span>→</span></button>
+      </div>
+      <div class="auth-note"><span class="shield">⌁</span> Your account is protected by Supabase Auth and row-level security.</div>
+    </div>
+  </section>
+
+  <section id="appView" class="app-shell hidden">
+    <aside class="sidebar glass">
+      <div class="brand"><img src="./bondhu-logo.png" alt="Bondhu"><div><strong>Bondhu</strong><span>Connect. Share. Belong.</span></div></div>
+      <nav>
+        <button class="nav-item active" data-screen="home"><span>⌂</span> Home</button>
+        <button class="nav-item" data-screen="explore"><span>⌕</span> Explore</button>
+        <button class="nav-item" data-screen="friends"><span>♧</span> Friends</button>
+        <button class="nav-item" data-screen="messages"><span>◌</span> Messages</button>
+        <button class="nav-item" data-screen="groups"><span>◫</span> Groups</button>
+        <button class="nav-item" data-screen="notifications"><span>♢</span> Notifications</button>
+      </nav>
+      <div class="side-bottom"><button class="nav-item" data-screen="profile"><span>◎</span> Profile</button><button class="nav-item" data-screen="settings"><span>⚙</span> Settings</button><button class="logout" id="logoutBtn">↪ Log out</button></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar"><div><span class="eyebrow">BONDHU / <span id="screenLabel">HOME</span></span><h1 id="pageTitle">Good to see you.</h1></div><div class="top-actions"><button class="icon-btn" id="themeBtn" title="Toggle theme">☼</button><button class="profile-chip" id="topProfile"><span class="avatar" id="topAvatar">B</span><span id="topUsername">Bondhu</span></button></div></header>
+
+      <section id="screen-home" class="screen">
+        <div class="stories" id="storiesRow"></div>
+        <div class="composer glass"><div class="avatar" id="composerAvatar">B</div><textarea id="postText" rows="2" placeholder="What's on your mind?"></textarea><div class="composer-bottom"><div class="attachs"><button id="photoBtn">＋ Photo</button><input id="photoInput" type="file" accept="image/*" hidden><span class="composer-hint">Share a thought, a moment or a memory.</span></div><button class="primary small" id="postBtn">Post</button></div></div>
+        <div id="feed" class="feed"></div>
+      </section>
+      <section id="screen-explore" class="screen hidden"><div class="section-head"><div><h2>Explore</h2><p class="muted">Find people and conversations worth your time.</p></div><input class="search" id="exploreSearch" placeholder="Search Bondhu..." /></div><div id="exploreGrid" class="people-grid"></div></section>
+      <section id="screen-friends" class="screen hidden"><div class="section-head"><div><h2>Friends</h2><p class="muted">People you connect with.</p></div></div><div id="friendsGrid" class="people-grid"></div></section>
+      <section id="screen-messages" class="screen hidden"><div class="empty-state glass"><div class="empty-icon">◌</div><h2>Messages are ready</h2><p>Realtime messaging is connected to your Supabase project. Select a friend to start a conversation.</p></div></section>
+      <section id="screen-groups" class="screen hidden"><div class="empty-state glass"><div class="empty-icon">◫</div><h2>Your communities</h2><p>Groups can be created from the Supabase-backed group system.</p></div></section>
+      <section id="screen-notifications" class="screen hidden"><div id="notificationList" class="list glass"></div></section>
+      <section id="screen-profile" class="screen hidden"><div id="profileCard" class="profile-hero glass"></div><div id="profilePosts" class="feed"></div></section>
+      <section id="screen-settings" class="screen hidden"><div class="settings glass"><h2>Settings</h2><div class="setting"><div><b>Appearance</b><span>Switch between dark and light mode.</span></div><button class="secondary" id="settingsTheme">Toggle theme</button></div><div class="setting"><div><b>Account</b><span>Reset password from your email.</span></div><button class="secondary" id="settingsReset">Send reset link</button></div><div id="adminPanel" class="admin-panel hidden"><div><b>Admin mode</b><span>Role-based admin access is active for this account.</span></div><button class="secondary" id="adminStats">View dashboard</button></div></div></section>
+    </main>
+    <nav class="mobile-nav"><button class="active" data-screen="home">⌂<small>Home</small></button><button data-screen="explore">⌕<small>Explore</small></button><button data-screen="messages">◌<small>Chat</small></button><button class="create" id="mobileCreate">＋</button><button data-screen="notifications">♢<small>Alerts</small></button><button data-screen="profile">◎<small>Profile</small></button></nav>
+  </section>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./config.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
